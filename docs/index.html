@@ -3921,8 +3921,8 @@ function exportWebpage() {
   // Grab the exact rendered preview HTML, same as what you see in the tool
   const reportHTML = document.getElementById('report-output').innerHTML;
 
-  // Grab all the CSS from the page style tag
-  const rawCSS = document.querySelector('style').textContent;
+  // Grab all the CSS from the page (capture all style elements)
+  const rawCSS = Array.from(document.querySelectorAll('style')).map(s => s.textContent).join('\n');
 
   const bookingUrl = document.getElementById('p-booking')?.value || '';
   const bookingBtn = bookingUrl
@@ -3952,6 +3952,13 @@ body{margin:0;padding:0;background:#e8e8e4;font-family:'Jost',sans-serif;}
 }
 /* ── All original report styles ── */
 ${rawCSS}
+/* ── Export-specific overrides (unconditional, all viewports) ── */
+body{display:block!important;}
+.welcome-page,.panel-page,.naturopath-page{
+  height:auto!important;min-height:0!important;overflow:visible!important;
+}
+.wp-body{max-width:100%!important;}
+.pp-body,.np-hero{overflow:visible!important;}
 /* ── Responsive overrides ── */
 @media(max-width:900px){
   .preview-paper{max-width:100%;}
