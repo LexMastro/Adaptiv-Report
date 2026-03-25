@@ -3949,7 +3949,8 @@ body{margin:0;padding:0;background:#e8e8e4;font-family:'Jost',sans-serif;}
 }
 /* ── All original report styles ── */
 ${rawCSS}
-/* ── Export-specific overrides (unconditional, all viewports) ── */
+/* ── Export-specific overrides (screen only — do not override @media print) ── */
+@media screen{
 body{display:block!important;}
 .welcome-page,.panel-page,.naturopath-page{
   height:auto!important;min-height:0!important;overflow:visible!important;
@@ -4075,6 +4076,7 @@ body{display:block!important;}
   }
   .frp-full-info{padding:1rem!important;}
 }
+} /* end @media screen */
 </style>
 </head>
 <body>
