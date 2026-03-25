@@ -664,21 +664,18 @@ body{
 
 .rb-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
 .rb-col-label{
-  font-family:var(--font-mono);font-size:0.58rem;
-  letter-spacing:0.2em;text-transform:uppercase;
-  color:rgba(16,19,2,0.35);
-  display:flex;align-items:center;gap:0.5rem;
-  margin-bottom:0.6rem;
+  font-family:var(--font-mono);font-size:0.72rem;
+  letter-spacing:0.18em;text-transform:uppercase;
+  display:flex;align-items:center;gap:0.6rem;
+  margin-bottom:0.75rem;
+  padding-bottom:0.5rem;
+  border-bottom:1px solid rgba(62,72,50,0.1);
 }
-.rb-col-label::before{
-  content:'';width:8px;height:1px;
-  display:inline-block;
-}
-.lifestyle-col .rb-col-label::before{background:var(--muted-olive);}
-.supports-col .rb-col-label::before{background:var(--air-blue);}
+.lifestyle-col .rb-col-label{color:var(--low-amber);}
+.supports-col .rb-col-label{color:var(--air-blue);}
 .rb-col-text{
-  font-size:0.85rem;line-height:1.55;
-  color:rgba(16,19,2,0.65);
+  font-size:0.88rem;line-height:1.6;
+  color:rgba(16,19,2,0.7);
 }
 
 /* NMI (Normal/Moderate/Impaired) gauge in report */
@@ -1013,10 +1010,15 @@ body{
     height:auto !important;
   }
 
-  /* Footer: sits on its own page after formula (or results if no optional pages) */
+  /* Footer: sits on its own full A4 page */
   .report-footer {
     break-before:page !important;
     page-break-before:always !important;
+    height:29.7cm !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    align-items:center !important;
   }
 
   /* ──────────────────────────────────────────────
@@ -1331,11 +1333,12 @@ body{
   margin:0 0 0.4rem 0.35rem;
 }
 .frp-herb-detail-lbl{
-  display:block;font-family:var(--font-mono);font-size:0.5rem;letter-spacing:0.15em;
-  text-transform:uppercase;color:var(--muted-olive);margin-bottom:0.25rem;
+  display:block;font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--low-amber);margin-bottom:0.35rem;
 }
+.frp-herb-detail-lbl.therapeutic{color:var(--air-blue);}
 .frp-herb-detail-text{
-  font-size:0.75rem;line-height:1.7;color:rgba(16,19,2,0.55);
+  font-size:0.83rem;line-height:1.7;color:rgba(16,19,2,0.65);
 }
 
 .fherb-info{min-width:0;flex:1;}
@@ -1781,34 +1784,38 @@ body{
 }
 .frp-full-header-label{font-family:var(--font-mono);font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(247,247,243,0.3);}
 .frp-full-body{
-  display:grid;grid-template-columns:280px 1fr;
+  display:flex;flex-direction:column;
 }
 .frp-full-bottle-col{
   background:var(--ebony);
-  display:flex;flex-direction:column;align-items:center;
-  justify-content:center;
-  gap:1.5rem;
-  padding:2rem 1.5rem;
-  align-self:stretch;
+  display:flex;flex-direction:row;align-items:center;
+  gap:2rem;
+  padding:1.25rem 2rem;
+  flex-shrink:0;
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.frp-full-bottle-col svg{
+  height:110px;width:auto;flex-shrink:0;
+}
+.frp-full-bottle-meta{
+  display:flex;flex-direction:column;gap:0.5rem;flex:1;
 }
 .frp-full-bottle-label{
-  font-family:var(--font-mono);font-size:0.85rem;letter-spacing:0.22em;
+  font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.22em;
   text-transform:uppercase;color:rgba(213,222,166,0.7);
-  text-align:center;
 }
 .frp-full-vol{
-  text-align:center;
-  padding:0.75rem 1.5rem;
+  display:flex;align-items:baseline;gap:0.5rem;
+  padding:0.5rem 0.85rem;
   border:1px solid rgba(213,222,166,0.25);
   background:rgba(213,222,166,0.06);
-  width:100%;
+  align-self:flex-start;
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
-.frp-full-vol-num{font-family:var(--font-primary);font-size:2.2rem;font-weight:200;color:var(--dry-sage);line-height:1;}
-.frp-full-vol-unit{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.17em;text-transform:uppercase;color:rgba(213,222,166,0.45);margin-top:0.55rem;}
+.frp-full-vol-num{font-family:var(--font-primary);font-size:1.6rem;font-weight:200;color:var(--dry-sage);line-height:1;}
+.frp-full-vol-unit{font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(213,222,166,0.5);}
 .frp-full-info{
-  padding:1.25rem 2rem;
+  padding:1.5rem 2rem;
 }
 .frp-full-rx{
   display:inline-flex;align-items:center;gap:0.5rem;
@@ -1834,7 +1841,7 @@ body{
 .frp-full-swatch{width:7px;height:7px;border-radius:50%;margin-top:0.28rem;flex-shrink:0;align-self:center;}
 .frp-full-herb-name{font-family:var(--font-primary);font-size:0.88rem;font-weight:500;color:var(--pitch);}
 .frp-full-herb-latin{font-family:var(--font-mono);font-size:0.58rem;font-style:italic;color:rgba(16,19,2,0.42);}
-.frp-full-herb-system{font-family:var(--font-mono);font-size:0.5rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--normal-sage);opacity:1;margin-left:auto;white-space:nowrap;}
+.frp-full-herb-system{font-family:var(--font-mono);font-size:0.52rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--air-blue);opacity:1;margin-left:auto;white-space:nowrap;}
 .frp-full-herb-pct{font-family:var(--font-mono);font-size:0.55rem;color:rgba(16,19,2,0.28);text-align:right;}
 .frp-full-herb-ml{font-family:var(--font-mono);font-size:0.68rem;font-weight:700;color:var(--ebony);text-align:right;min-width:36px;}
 .frp-full-note{
@@ -3841,7 +3848,7 @@ function buildFormulaReportPage(fullName, colFmt, prac) {
       </div>` : '';
     const therapBlock = f.showTherapeutic && f.herb.therapeutic ? `
       <div class="frp-herb-detail">
-        <span class="frp-herb-detail-lbl">Therapeutic Applications</span>
+        <span class="frp-herb-detail-lbl therapeutic">Therapeutic Applications</span>
         <span class="frp-herb-detail-text">${f.herb.therapeutic}</span>
       </div>` : '';
     return `<div class="frp-full-herb-entry">
@@ -3866,11 +3873,13 @@ function buildFormulaReportPage(fullName, colFmt, prac) {
 
     <div class="frp-full-body">
       <div class="frp-full-bottle-col">
-        <div class="frp-full-bottle-label">Your Bespoke Formula</div>
         ${buildLiveBottleSVG(fFormula, formulaName, dose, total)}
-        <div class="frp-full-vol">
-          <div class="frp-full-vol-num">${total}</div>
-          <div class="frp-full-vol-unit">ml total volume<br>dispensed &amp; labelled</div>
+        <div class="frp-full-bottle-meta">
+          <div class="frp-full-bottle-label">Your Bespoke Formula</div>
+          <div class="frp-full-vol">
+            <div class="frp-full-vol-num">${total}</div>
+            <div class="frp-full-vol-unit">ml · dispensed &amp; labelled</div>
+          </div>
         </div>
       </div>
       <div class="frp-full-info">
@@ -4027,16 +4036,9 @@ ${rawCSS}
   }
 
   /* ── Formula page ── */
-  .frp-full-body{grid-template-columns:1fr!important;}
-  .frp-full-bottle-col{
-    display:flex!important;
-    flex-direction:column!important;
-    align-items:center!important;
-    justify-content:center!important;
-    padding:1.75rem 1.5rem!important;
-    gap:1rem!important;
-  }
-  .frp-full-info{padding:1.5rem!important;}
+  .frp-full-bottle-col{padding:1rem 1.5rem!important;gap:1rem!important;}
+  .frp-full-bottle-col svg{height:80px!important;}
+  .frp-full-info{padding:1.25rem 1.5rem!important;}
   .frp-full-herb-row{justify-content:center!important;text-align:center!important;}
   .frp-full-herb-system{margin-left:0!important;}
 
@@ -4072,11 +4074,7 @@ ${rawCSS}
   .wp-headline{font-size:1.6rem!important;}
 
   /* ── Formula bottle ── */
-  .frp-full-bottle-col{flex-direction:column!important;}
-  .frp-full-bottle-col > div:first-child{
-    transform:scale(0.65)!important;
-    transform-origin:center center;
-  }
+  .frp-full-bottle-col svg{height:60px!important;}
   .frp-full-info{padding:1rem!important;}
 }
 } /* end @media screen */
@@ -4103,7 +4101,7 @@ ${rawCSS}
     break-after:page !important;  page-break-after:always !important;
     min-height:0 !important; height:auto !important;
   }
-  .report-footer { break-before:page !important; page-break-before:always !important; }
+  .report-footer { break-before:page !important; page-break-before:always !important; height:29.7cm !important; display:flex !important; flex-direction:column !important; justify-content:center !important; align-items:center !important; }
   .rb-gauge-wrap, .rb-cols, .rb-header, .rss-item,
   .np-int-card, .np-step, .frp-full-header { break-inside:avoid !important; }
 }
