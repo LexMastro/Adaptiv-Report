@@ -1789,20 +1789,20 @@ body{
 .frp-full-bottle-col{
   background:var(--ebony);
   display:flex;flex-direction:row;align-items:center;
-  gap:2rem;
-  padding:1.25rem 2rem;
+  gap:2.5rem;
+  padding:2rem 2.5rem;
   flex-shrink:0;
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
 .frp-full-bottle-col svg{
-  height:110px;width:auto;flex-shrink:0;
+  height:240px;width:auto;flex-shrink:0;
 }
 .frp-full-bottle-meta{
-  display:flex;flex-direction:column;gap:0.5rem;flex:1;
+  display:flex;flex-direction:column;gap:0.85rem;flex:1;
 }
 .frp-full-bottle-label{
   font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.22em;
-  text-transform:uppercase;color:rgba(213,222,166,0.7);
+  text-transform:uppercase;color:rgba(213,222,166,0.55);
 }
 .frp-full-vol{
   display:flex;align-items:baseline;gap:0.5rem;
@@ -1814,6 +1814,16 @@ body{
 }
 .frp-full-vol-num{font-family:var(--font-primary);font-size:1.6rem;font-weight:200;color:var(--dry-sage);line-height:1;}
 .frp-full-vol-unit{font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(213,222,166,0.5);}
+.frp-full-banner-name{font-family:var(--font-primary);font-size:1.8rem;font-weight:200;color:rgba(247,247,243,0.9);margin-bottom:0.1rem;}
+.frp-full-banner-dose{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-olive);}
+.frp-full-banner-rx{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.3rem 0.65rem;align-self:flex-start;
+  background:rgba(196,77,58,0.1);border:1px solid rgba(196,77,58,0.25);
+  font-family:var(--font-mono);font-size:0.5rem;letter-spacing:0.1em;
+  text-transform:uppercase;color:rgba(196,77,58,0.8);
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
 .frp-full-info{
   padding:1.5rem 2rem;
 }
@@ -3876,16 +3886,16 @@ function buildFormulaReportPage(fullName, colFmt, prac) {
         ${buildLiveBottleSVG(fFormula, formulaName, dose, total)}
         <div class="frp-full-bottle-meta">
           <div class="frp-full-bottle-label">Your Bespoke Formula</div>
+          <div class="frp-full-banner-name">${formulaName}</div>
+          <div class="frp-full-banner-dose">${dose}</div>
           <div class="frp-full-vol">
             <div class="frp-full-vol-num">${total}</div>
             <div class="frp-full-vol-unit">ml · dispensed &amp; labelled</div>
           </div>
+          <div class="frp-full-banner-rx">⚕ Illustrative only · final prescription requires naturopathic consultation</div>
         </div>
       </div>
       <div class="frp-full-info">
-        <div class="frp-full-rx"><span>⚕ Illustrative only · final prescription requires naturopathic consultation</span></div>
-        <div class="frp-full-name">${formulaName}</div>
-        <div class="frp-full-dose">${dose}</div>
         <div class="frp-full-comp-label">Formula Composition</div>
         ${herbRows}
         ${note ? `<div class="frp-full-note">
@@ -4036,8 +4046,8 @@ ${rawCSS}
   }
 
   /* ── Formula page ── */
-  .frp-full-bottle-col{padding:1rem 1.5rem!important;gap:1rem!important;}
-  .frp-full-bottle-col svg{height:80px!important;}
+  .frp-full-bottle-col{padding:1.5rem!important;gap:1.5rem!important;}
+  .frp-full-bottle-col svg{height:160px!important;}
   .frp-full-info{padding:1.25rem 1.5rem!important;}
   .frp-full-herb-row{justify-content:center!important;text-align:center!important;}
   .frp-full-herb-system{margin-left:0!important;}
@@ -4074,7 +4084,8 @@ ${rawCSS}
   .wp-headline{font-size:1.6rem!important;}
 
   /* ── Formula bottle ── */
-  .frp-full-bottle-col svg{height:60px!important;}
+  .frp-full-bottle-col{flex-direction:column!important;align-items:flex-start!important;}
+  .frp-full-bottle-col svg{height:120px!important;}
   .frp-full-info{padding:1rem!important;}
 }
 } /* end @media screen */
