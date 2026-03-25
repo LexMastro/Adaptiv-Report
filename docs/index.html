@@ -1081,99 +1081,97 @@ body{
   letter-spacing:0.22em;text-transform:uppercase;
   color:rgba(247,247,243,0.35);
 }
-.pp-body{
+/* ── PANEL PAGE: intro (full-width dark) ─────────── */
+.pp-intro{
+  background:var(--ebony);
+  padding:2.5rem 2.5rem 2.25rem;
+  flex-shrink:0;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.pp-intro-label{
+  font-family:var(--font-mono);font-size:0.75rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(213,222,166,0.55);margin-bottom:1.1rem;
+}
+.pp-intro-name{
+  font-family:var(--font-primary);
+  font-size:clamp(2rem,3.5vw,2.8rem);
+  font-weight:200;line-height:1.15;
+  color:rgba(247,247,243,0.95);
+  letter-spacing:0.01em;
+  margin-bottom:1.25rem;
+}
+.pp-intro-divider{
+  width:3rem;height:1px;
+  background:rgba(213,222,166,0.3);
+  margin-bottom:1.25rem;
+}
+.pp-intro-desc{
+  font-family:var(--font-primary);
+  font-size:0.95rem;line-height:1.75;
+  color:rgba(247,247,243,0.5);
+  max-width:88%;
+}
+/* ── PANEL PAGE: detail columns ─────────────────── */
+.pp-detail-row{
   flex:1;
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:0;
+  border-top:1px solid rgba(62,72,50,0.15);
+  min-height:0;
 }
-.pp-left{
-  background:var(--ebony);
-  padding:1.25rem 2rem;
-  display:flex;flex-direction:column;justify-content:space-between;
+.pp-tested-col{
+  background:rgba(62,72,50,0.04);
+  padding:2rem 2.5rem;
+  border-right:1px solid rgba(62,72,50,0.1);
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
-.pp-panel-tag{
-  font-family:var(--font-mono);font-size:0.58rem;
-  letter-spacing:0.22em;text-transform:uppercase;
-  color:rgba(213,222,166,0.5);margin-bottom:1rem;
+.pp-benefits-col{
+  background:#F7F7F3;
+  padding:2rem 2.5rem;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
-.pp-panel-name{
-  font-family:var(--font-primary);
-  font-size:clamp(1.6rem,3vw,2.2rem);
-  font-weight:200;line-height:1.2;
-  color:rgba(247,247,243,0.92);
-  letter-spacing:0.01em;
-  margin-bottom:1.5rem;
-}
-.pp-panel-desc{
-  font-family:var(--font-primary);
-  font-size:0.87rem;line-height:1.8;
-  color:rgba(247,247,243,0.45);
-  flex:1;
-}
-.pp-tested{
-  margin-top:2.5rem;
-}
-.pp-tested-label{
-  font-family:var(--font-mono);font-size:0.55rem;
+.pp-col-label{
+  font-family:var(--font-mono);font-size:0.75rem;
   letter-spacing:0.2em;text-transform:uppercase;
-  color:rgba(213,222,166,0.4);margin-bottom:0.85rem;
+  color:rgba(16,19,2,0.45);
+  margin-bottom:1.25rem;
+  padding-bottom:0.75rem;
+  border-bottom:1px solid rgba(62,72,50,0.12);
 }
+/* tested items */
 .pp-tested-item{
-  display:flex;align-items:baseline;gap:0.65rem;
-  margin-bottom:0.55rem;
+  display:flex;align-items:baseline;gap:0.75rem;
+  margin-bottom:0.7rem;
 }
 .pp-tested-dot{
   width:6px;height:6px;border-radius:50%;
   background:var(--muted-olive);flex-shrink:0;
-  margin-top:0.22rem;
+  margin-top:0.28rem;
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
 .pp-tested-text{
-  font-family:var(--font-primary);font-size:0.8rem;
-  color:rgba(247,247,243,0.7);line-height:1.5;
+  font-family:var(--font-primary);font-size:0.9rem;
+  color:rgba(16,19,2,0.7);line-height:1.55;
 }
-.pp-right{
-  padding:1.25rem 2rem;
-  display:flex;flex-direction:column;
-  background:#F7F7F3;
-}
-.pp-section-label{
-  font-family:var(--font-mono);font-size:0.55rem;
-  letter-spacing:0.2em;text-transform:uppercase;
-  color:rgba(16,19,2,0.35);margin-bottom:0.85rem;
-  display:flex;align-items:center;gap:0.65rem;
-}
-.pp-section-label::after{content:'';flex:1;height:1px;background:rgba(62,72,50,0.12);}
-.pp-benefits{margin-bottom:2.5rem;}
+/* benefit items */
 .pp-benefit-item{
-  display:flex;align-items:baseline;gap:0.75rem;
-  padding:0.65rem 0;
+  display:flex;align-items:baseline;gap:1rem;
+  padding:0.75rem 0;
   border-bottom:1px solid rgba(62,72,50,0.07);
 }
 .pp-benefit-item:last-child{border-bottom:none;}
 .pp-benefit-num{
-  font-family:var(--font-mono);font-size:0.55rem;
+  font-family:var(--font-mono);font-size:0.65rem;
   color:var(--muted-olive);font-weight:700;
-  flex-shrink:0;min-width:1.2rem;
+  flex-shrink:0;min-width:1.5rem;
 }
 .pp-benefit-text{
-  font-family:var(--font-primary);font-size:0.8rem;
-  line-height:1.5;color:rgba(16,19,2,0.65);
+  font-family:var(--font-primary);font-size:0.9rem;
+  line-height:1.6;color:rgba(16,19,2,0.7);
 }
-.pp-tagline-block{
-  margin-top:auto;
-  padding-top:2rem;
-  border-top:1px solid rgba(62,72,50,0.1);
-}
-.pp-tagline{
-  font-family:var(--font-mono);font-size:0.7rem;
-  font-weight:700;letter-spacing:0.22em;
-  text-transform:uppercase;color:var(--ebony);
-  text-align:center;
-  padding-bottom:10px;
-}
+/* footer */
 .pp-footer{
   padding:1rem 2rem;
   background:var(--porcelain);
@@ -1183,8 +1181,13 @@ body{
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
 .pp-footer-note{
-  font-family:var(--font-mono);font-size:0.55rem;
+  font-family:var(--font-mono);font-size:0.58rem;
   letter-spacing:0.12em;color:rgba(16,19,2,0.3);
+}
+.pp-tagline{
+  font-family:var(--font-mono);font-size:0.7rem;
+  font-weight:700;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--ebony);
 }
 .pp-no-panel{
   padding:4rem 2rem;
@@ -3121,27 +3124,25 @@ function updateReport() {
             <svg viewBox="0 0 1684.64 312.96" style="height:13px;width:auto;display:block;" xmlns="http://www.w3.org/2000/svg"><g><path fill="rgba(247,247,243,0.3)" d="M215.96,296.25l-30.24-75.39H61.88l-30.37,75.39H0L123.94,0l123.53,296.25h-31.5ZM175.1,194.38l-51.16-127.55-51.39,127.55h102.55Z"/><path fill="rgba(247,247,243,0.3)" d="M519.12,213.33c-7.6,16.98-17.89,31.58-30.88,43.81-12.99,12.23-28.33,21.8-46.01,28.73-17.69,6.93-36.62,10.39-56.79,10.39h-73.78V19.15h73.78c20.17,0,39.1,3.46,56.79,10.39,17.69,6.93,33.02,16.5,46.01,28.73,12.99,12.23,23.28,26.83,30.88,43.81,7.6,16.98,11.4,35.52,11.4,55.62s-3.8,38.64-11.4,55.62ZM468.34,78.65c-22.17-20.65-49.53-30.97-82.07-30.97h-45.6v220.05h45.6c32.55,0,59.91-10.32,82.07-30.97,22.66-21.1,33.99-47.46,33.99-79.06s-11.33-57.95-33.99-79.06Z"/><path fill="rgba(247,247,243,0.3)" d="M780.41,296.25l-30.24-75.39h-123.85l-30.37,75.39h-31.5L688.39,0l123.53,296.25h-31.5ZM739.55,194.38l-51.16-127.55-51.39,127.55h102.55Z"/><path fill="rgba(247,247,243,0.3)" d="M1029.68,163.1c-17.05,15.62-38.12,23.43-63.21,23.43h-61.35v109.62h-29.02V19.04h90.37c24.93,0,46,7.74,63.21,23.23,17.55,15.79,26.32,35.89,26.32,60.31s-8.77,44.43-26.32,60.51ZM970.61,158.82c16.19,0,29.59-5.37,40.21-16.1,10.78-10.89,16.17-24.51,16.17-40.87s-5.11-29.7-15.34-40.02c-10.22-10.32-23.9-15.49-41.04-15.49h-65.49v112.47h65.49Z"/><path fill="rgba(247,247,243,0.3)" d="M1101.54,18.34h165.81v26.49h-68.4v250.61h-29.02V44.83h-68.4v-26.49Z"/><path fill="rgba(247,247,243,0.3)" d="M1335.68,296.25V19.15h29.02v277.1h-29.02Z"/><path fill="rgba(247,247,243,0.3)" d="M1428.88,19.15h31.5l96.58,223.31,96.17-223.31h31.5l-127.67,293.81L1428.88,19.15Z"/></g></svg>
             <span class="pp-topbar-label">Panel Overview</span>
           </div>
-          <div class="pp-body">
-            <div class="pp-left">
-              <div>
-                <div class="pp-panel-tag">Your Panel</div>
-                <div class="pp-panel-name">${panel}</div>
-                <div class="pp-panel-desc">${pd.desc}</div>
-              </div>
-              <div class="pp-tested">
-                <div class="pp-tested-label">What's Tested</div>
-                ${testedItems}
-              </div>
+          <div class="pp-intro">
+            <div class="pp-intro-label">Your Panel</div>
+            <div class="pp-intro-name">${panel}</div>
+            <div class="pp-intro-divider"></div>
+            <div class="pp-intro-desc">${pd.desc}</div>
+          </div>
+          <div class="pp-detail-row">
+            <div class="pp-tested-col">
+              <div class="pp-col-label">What's Tested</div>
+              ${testedItems}
             </div>
-            <div class="pp-right">
-              <div class="pp-benefits">
-                <div class="pp-section-label">Your Benefits</div>
-                ${benefitItems}
-              </div>
-              <div class="pp-tagline-block">
-                <div class="pp-tagline">Test. Adapt. Perform.</div>
-              </div>
+            <div class="pp-benefits-col">
+              <div class="pp-col-label">Your Benefits</div>
+              ${benefitItems}
             </div>
+          </div>
+          <div class="pp-footer">
+            <div class="pp-footer-note">Adaptiv Health Report</div>
+            <div class="pp-tagline">Test. Adapt. Perform.</div>
           </div>
         </div>`;
       })()}
@@ -3955,7 +3956,7 @@ ${rawCSS}
   height:auto!important;min-height:0!important;overflow:visible!important;
 }
 .wp-body{max-width:100%!important;}
-.pp-body,.np-hero{overflow:visible!important;}
+.pp-detail-row,.np-hero{overflow:visible!important;}
 /* ── Responsive overrides ── */
 @media(max-width:900px){
   .preview-paper{max-width:100%;}
@@ -3978,8 +3979,11 @@ ${rawCSS}
 
   /* ── Panel page ── */
   .panel-page{height:auto!important;min-height:0!important;overflow:visible!important;}
-  .pp-body{grid-template-columns:1fr!important;}
-  .pp-left,.pp-right{padding:2rem 1.5rem!important;}
+  .pp-detail-row{grid-template-columns:1fr!important;}
+  .pp-tested-col,.pp-benefits-col{padding:1.5rem 1.75rem!important;}
+  .pp-tested-col{border-right:none!important;border-bottom:1px solid rgba(62,72,50,0.1)!important;}
+  .pp-intro{padding:2rem 1.75rem 1.75rem!important;}
+  .pp-intro-desc{max-width:100%!important;}
 
   /* ── Results header ── */
   .report-header-patient{grid-template-columns:1fr 1fr!important;}
