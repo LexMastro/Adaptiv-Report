@@ -3951,7 +3951,6 @@ body{margin:0;padding:0;background:#e8e8e4;font-family:'Jost',sans-serif;}
 ${rawCSS}
 /* ── Export-specific overrides (screen only — do not override @media print) ── */
 @media screen{
-body{display:block!important;}
 .welcome-page,.panel-page,.naturopath-page{
   height:auto!important;min-height:0!important;overflow:visible!important;
 }
@@ -4077,6 +4076,33 @@ body{display:block!important;}
   .frp-full-info{padding:1rem!important;}
 }
 } /* end @media screen */
+@media print {
+  @page { size:A4 portrait; margin:0; }
+  body  { display:block !important; background:white !important; margin:0 !important; }
+  .preview-paper { max-width:none !important; width:100% !important; margin:0 !important; box-shadow:none !important; }
+  * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .welcome-page, .panel-page {
+    height:29.7cm !important; overflow:hidden !important;
+    break-after:page !important; page-break-after:always !important;
+  }
+  .results-section {
+    break-before:page !important; page-break-before:always !important;
+    break-after:page !important;  page-break-after:always !important;
+  }
+  .naturopath-page {
+    break-before:page !important; page-break-before:always !important;
+    break-after:page !important;  page-break-after:always !important;
+    min-height:0 !important; height:auto !important;
+  }
+  .frp-full-page, .formula-report-page {
+    break-before:page !important; page-break-before:always !important;
+    break-after:page !important;  page-break-after:always !important;
+    min-height:0 !important; height:auto !important;
+  }
+  .report-footer { break-before:page !important; page-break-before:always !important; }
+  .rb-gauge-wrap, .rb-cols, .rb-header, .rss-item,
+  .np-int-card, .np-step, .frp-full-header { break-inside:avoid !important; }
+}
 </style>
 </head>
 <body>
