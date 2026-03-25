@@ -829,30 +829,42 @@ body{
 
 /* Report footer */
 .report-footer{
-  padding:1.25rem 2rem;
+  padding:3rem 2rem;
   background:var(--pitch);
   border-top:none;
-  display:grid;grid-template-columns:1fr auto;gap:3rem;
-  align-items:center;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:2.5rem;
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
-.rf-disclaimer{
-  font-size:0.72rem;line-height:1.5;
-  color:rgba(247,247,243,0.35);
+.rf-center{
+  display:flex;flex-direction:column;align-items:center;gap:1.5rem;
   text-align:center;
 }
-.rf-right{text-align:center;display:flex;flex-direction:column;align-items:flex-start;gap:0.55rem;}
 .rf-logo{
-  width:150px;
+  width:180px;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.rf-booking-btn{
+  display:inline-block;
+  background:var(--dry-sage);
+  color:var(--pitch);
+  font-family:var(--font-mono);font-size:0.68rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  padding:0.9rem 2rem;text-decoration:none;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
 .rf-contact{
-  font-family:var(--font-mono);font-size:0.6rem;
-  color:rgba(247,247,243,0.35);
+  font-family:var(--font-mono);font-size:0.62rem;
+  color:rgba(247,247,243,0.4);letter-spacing:0.1em;
 }
-.rf-tagline{
-  font-family:var(--font-mono);font-size:0.55rem;
-  letter-spacing:0.18em;text-transform:uppercase;
-  color:rgba(247,247,243,0.18);
+.rf-disclaimer{
+  font-size:0.72rem;line-height:1.7;
+  color:rgba(247,247,243,0.25);
+  text-align:center;
+  max-width:600px;
+  border-top:1px solid rgba(247,247,243,0.08);
+  padding-top:2rem;
 }
 
 /* Empty state */
@@ -1034,6 +1046,7 @@ body{
   .np-int-card      { break-inside:avoid; }
   .np-step          { break-inside:avoid; }
   .frp-full-header  { break-inside:avoid; }
+  .frp-full-bottle-col { break-after:avoid !important; }
 
   /* ──────────────────────────────────────────────
      FORMULA PAGE LAYOUT
@@ -2909,6 +2922,7 @@ function updateReport() {
   const retestFmt = retest ? new Date(retest).toLocaleDateString('en-AU',{day:'2-digit',month:'long',year:'numeric'}) : null;
   const prac      = document.getElementById('p-prac').value || '';
   const contact   = document.getElementById('p-contact').value || '';
+  const booking   = document.getElementById('p-booking')?.value || '';
   const notes     = document.getElementById('p-notes').value || '';
 
   const wpP1El  = document.getElementById('wp-p1');
@@ -3242,12 +3256,13 @@ function updateReport() {
       ${buildFormulaReportPage(fullName, colFmt, prac)}
 
       <div class="report-footer">
+        <div class="rf-center">
+          <svg class="rf-logo" viewBox="0 0 1684.64 312.96" xmlns="http://www.w3.org/2000/svg"><g><path fill="#f7f7f3" d="M215.96,296.25l-30.24-75.39H61.88l-30.37,75.39H0L123.94,0l123.53,296.25h-31.5ZM175.1,194.38l-51.16-127.55-51.39,127.55h102.55Z"/><path fill="#f7f7f3" d="M519.12,213.33c-7.6,16.98-17.89,31.58-30.88,43.81-12.99,12.23-28.33,21.8-46.01,28.73-17.69,6.93-36.62,10.39-56.79,10.39h-73.78V19.15h73.78c20.17,0,39.1,3.46,56.79,10.39,17.69,6.93,33.02,16.5,46.01,28.73,12.99,12.23,23.28,26.83,30.88,43.81,7.6,16.98,11.4,35.52,11.4,55.62s-3.8,38.64-11.4,55.62ZM468.34,78.65c-22.17-20.65-49.53-30.97-82.07-30.97h-45.6v220.05h45.6c32.55,0,59.91-10.32,82.07-30.97,22.66-21.1,33.99-47.46,33.99-79.06s-11.33-57.95-33.99-79.06Z"/><path fill="#f7f7f3" d="M780.41,296.25l-30.24-75.39h-123.85l-30.37,75.39h-31.5L688.39,0l123.53,296.25h-31.5ZM739.55,194.38l-51.16-127.55-51.39,127.55h102.55Z"/><path fill="#f7f7f3" d="M1029.68,163.1c-17.05,15.62-38.12,23.43-63.21,23.43h-61.35v109.62h-29.02V19.04h90.37c24.93,0,46,7.74,63.21,23.23,17.55,15.79,26.32,35.89,26.32,60.31s-8.77,44.43-26.32,60.51ZM970.61,158.82c16.19,0,29.59-5.37,40.21-16.1,10.78-10.89,16.17-24.51,16.17-40.87s-5.11-29.7-15.34-40.02c-10.22-10.32-23.9-15.49-41.04-15.49h-65.49v112.47h65.49Z"/><path fill="#f7f7f3" d="M1101.54,18.34h165.81v26.49h-68.4v250.61h-29.02V44.83h-68.4v-26.49Z"/><path fill="#f7f7f3" d="M1335.68,296.25V19.15h29.02v277.1h-29.02Z"/><path fill="#f7f7f3" d="M1428.88,19.15h31.5l96.58,223.31,96.17-223.31h31.5l-127.67,293.81L1428.88,19.15Z"/></g></svg>
+          ${booking ? `<a href="${booking}" target="_blank" class="rf-booking-btn">Book Your Follow-Up Consultation →</a>` : ''}
+          <div class="rf-contact">${contact || 'adaptiv-performance.com.au'}</div>
+        </div>
         <div class="rf-disclaimer">
           This report contains personalised health guidance based on your blood panel results. The lifestyle recommendations and supplementation suggestions provided are non-prescription and evidence-informed. They are not a substitute for medical advice. If symptoms persist or worsen, please consult a qualified health practitioner. All supplements should be used as directed.
-        </div>
-        <div class="rf-right">
-          <svg class="rf-logo" viewBox="0 0 1684.64 312.96" xmlns="http://www.w3.org/2000/svg"><g><path fill="#f7f7f3" d="M215.96,296.25l-30.24-75.39H61.88l-30.37,75.39H0L123.94,0l123.53,296.25h-31.5ZM175.1,194.38l-51.16-127.55-51.39,127.55h102.55Z"/><path fill="#f7f7f3" d="M519.12,213.33c-7.6,16.98-17.89,31.58-30.88,43.81-12.99,12.23-28.33,21.8-46.01,28.73-17.69,6.93-36.62,10.39-56.79,10.39h-73.78V19.15h73.78c20.17,0,39.1,3.46,56.79,10.39,17.69,6.93,33.02,16.5,46.01,28.73,12.99,12.23,23.28,26.83,30.88,43.81,7.6,16.98,11.4,35.52,11.4,55.62s-3.8,38.64-11.4,55.62ZM468.34,78.65c-22.17-20.65-49.53-30.97-82.07-30.97h-45.6v220.05h45.6c32.55,0,59.91-10.32,82.07-30.97,22.66-21.1,33.99-47.46,33.99-79.06s-11.33-57.95-33.99-79.06Z"/><path fill="#f7f7f3" d="M780.41,296.25l-30.24-75.39h-123.85l-30.37,75.39h-31.5L688.39,0l123.53,296.25h-31.5ZM739.55,194.38l-51.16-127.55-51.39,127.55h102.55Z"/><path fill="#f7f7f3" d="M1029.68,163.1c-17.05,15.62-38.12,23.43-63.21,23.43h-61.35v109.62h-29.02V19.04h90.37c24.93,0,46,7.74,63.21,23.23,17.55,15.79,26.32,35.89,26.32,60.31s-8.77,44.43-26.32,60.51ZM970.61,158.82c16.19,0,29.59-5.37,40.21-16.1,10.78-10.89,16.17-24.51,16.17-40.87s-5.11-29.7-15.34-40.02c-10.22-10.32-23.9-15.49-41.04-15.49h-65.49v112.47h65.49Z"/><path fill="#f7f7f3" d="M1101.54,18.34h165.81v26.49h-68.4v250.61h-29.02V44.83h-68.4v-26.49Z"/><path fill="#f7f7f3" d="M1335.68,296.25V19.15h29.02v277.1h-29.02Z"/><path fill="#f7f7f3" d="M1428.88,19.15h31.5l96.58,223.31,96.17-223.31h31.5l-127.67,293.81L1428.88,19.15Z"/></g></svg>
-          <div class="rf-contact">${contact || 'adaptiv-performance.com.au'}</div>
         </div>
       </div>
     </div>`;
@@ -3941,10 +3956,6 @@ function exportWebpage() {
   const reportHTML = document.getElementById('report-output').innerHTML;
   const rawCSS = Array.from(document.querySelectorAll('style')).map(s => s.textContent).join('\n');
 
-  const bookingUrl = document.getElementById('p-booking')?.value || '';
-  const bookingBtn = bookingUrl
-    ? `<div style="text-align:center;padding:2.5rem 1rem 3rem;background:#D2E186;"><a href="${bookingUrl}" target="_blank" style="display:inline-block;background:#3E4832;color:#D5DEA6;font-family:'Anonymous Pro',monospace;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;padding:1rem 2rem;text-decoration:none;">Book Your Follow-Up Consultation →</a></div>`
-    : '';
 
   const webpage = `<!DOCTYPE html>
 <html lang="en">
@@ -4118,7 +4129,6 @@ ${rawCSS}
 <body>
 <div class="preview-paper">
   ${reportHTML}
-  ${bookingBtn}
 </div>
 </body>
 </html>`;
