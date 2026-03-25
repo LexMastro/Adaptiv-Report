@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
 /* ── BRAND TOKENS ───────────────────────────────── */
 :root {
@@ -1864,7 +1863,7 @@ body{
   <div class="app-actions">
     <button class="btn btn-ghost" onclick="clearAll()">Clear All</button>
     <button class="btn btn-primary" onclick="scrollToPreview()">Preview Report</button>
-    <button class="btn btn-pdf" onclick="exportPDF()">⬇ Export PDF</button>
+    <button class="btn btn-pdf" onclick="exportWebpage()">⬇ Export Report</button>
   </div>
 </header>
 
@@ -3914,57 +3913,6 @@ function switchTab(tab) {
   }
 }
 
-async function exportPDF() {
-  const firstName = document.getElementById('p-first')?.value || '';
-  const lastName  = document.getElementById('p-last')?.value || '';
-  const fullName  = (firstName + ' ' + lastName).trim() || 'patient';
-  const name = fullName.toLowerCase().replace(/\s+/g, '-');
-
-  const btn = document.querySelector('.btn-pdf');
-  btn.textContent = 'Generating…';
-  btn.disabled = true;
-
-  const source = document.getElementById('report-output');
-
-  const opt = {
-    margin: 0,
-    filename: name + '-adaptiv-report.pdf',
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: {
-      scale: 2,
-      useCORS: true,
-      allowTaint: false,
-      logging: false,
-      onclone: (_doc, el) => {
-        el.querySelectorAll('.welcome-page,.panel-page,.naturopath-page').forEach(p => {
-          p.style.height = 'auto';
-          p.style.minHeight = '0';
-          p.style.overflow = 'visible';
-        });
-      }
-    },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  };
-
-  try {
-    const pdf = await html2pdf().set(opt).from(source).toPdf().get('pdf');
-    const blob = pdf.output('blob');
-    const url  = URL.createObjectURL(blob);
-    const tab  = window.open(url, '_blank');
-    if (!tab) {
-      const a = document.createElement('a');
-      a.href = url; a.download = name + '-adaptiv-report.pdf'; a.click();
-    }
-  } catch (err) {
-    alert('PDF export failed. Please try again.');
-    console.error(err);
-  } finally {
-    btn.textContent = '⬇ Export PDF';
-    btn.disabled = false;
-  }
-}
-
-// kept for reference — no longer called
 function exportWebpage() {
   const firstName = document.getElementById('p-first')?.value || '';
   const lastName  = document.getElementById('p-last')?.value || '';
@@ -4137,12 +4085,8 @@ body{display:block!important;}
 </body>
 </html>`;
 
-  const name = fullName.toLowerCase().replace(/\s+/g, '-');
   const blob = new Blob([webpage], {type: 'text/html'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = name + '-adaptiv-report.html';
-  a.click();
+  window.open(URL.createObjectURL(blob), '_blank');
 }
 
 function scrollToPreview() {
