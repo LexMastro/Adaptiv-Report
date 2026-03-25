@@ -1600,8 +1600,8 @@ body{
 }
 .np-hero{
   background:var(--pitch);
-  padding:1.25rem 2rem;
-  display:grid;grid-template-columns:1fr 1fr;gap:3rem;
+  padding:1rem 2rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;
   align-items:end;
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
@@ -1632,38 +1632,39 @@ body{
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
 .np-int-card{
-  padding:1.25rem 2rem;
+  padding:0.75rem 1.25rem;
   background:white;
-  display:grid;grid-template-columns:28px 1fr;gap:0.75rem;align-items:start;
+  display:grid;grid-template-columns:24px 1fr;gap:0.6rem;align-items:start;
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
 .np-int-card:nth-child(even){border-right:none;}
 .np-int-card:nth-last-child(-n+2){border-bottom:none;}
 .np-int-icon{
-  width:28px;height:28px;
+  width:24px;height:24px;
   border:1px solid rgba(62,72,50,0.18);
   border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;margin-top:2px;
 }
 .np-int-title{
-  font-family:var(--font-primary);font-size:0.85rem;font-weight:500;
-  color:var(--ebony);margin-bottom:0.25rem;
+  font-family:var(--font-primary);font-size:0.8rem;font-weight:500;
+  color:var(--ebony);margin-bottom:0.15rem;
 }
 .np-int-desc{
-  font-size:0.74rem;line-height:1.52;
+  font-size:0.7rem;line-height:1.45;
   color:rgba(16,19,2,0.52);
 }
 
 /* ── CONSULTATION BRIDGE ── */
 .np-consult{
   background:var(--porcelain);
-  padding:1.25rem 2rem;
+  padding:0.85rem 2rem;
   border-top:1px solid rgba(62,72,50,0.08);
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
 .np-consult-upper{
-  margin-bottom:1.5rem;
+  margin-bottom:0.75rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;
 }
 .np-consult-text{
   font-family:var(--font-primary);font-size:0.88rem;line-height:1.58;
@@ -1671,8 +1672,8 @@ body{
 }
 .np-consult-text strong{color:var(--pitch);font-weight:500;}
 .np-consult-quote{
-  font-family:var(--font-primary);font-size:2rem;font-weight:200;font-style:italic;
-  color:var(--muted-olive);text-align:left;line-height:1.45;
+  font-family:var(--font-primary);font-size:1.35rem;font-weight:200;font-style:italic;
+  color:var(--muted-olive);text-align:left;line-height:1.4;
 }
 .np-process-steps{
   display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
@@ -1680,7 +1681,7 @@ body{
   border:1px solid rgba(62,72,50,0.1);
 }
 .np-step{
-  padding:1rem 1.25rem;
+  padding:0.75rem 1rem;
   background:white;
   position:relative;
 }
@@ -1700,7 +1701,7 @@ body{
 /* ── THERAPEUTIC DOSING ── (cleaner redesign) */
 .np-dose-section{
   background:var(--pitch);
-  padding:1.25rem 2rem;
+  padding:0.85rem 2rem;
   display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
@@ -3786,9 +3787,8 @@ function buildNaturopathPage(fullName, prac) {
     <div class="np-consult">
       <div class="np-consult-upper">
         <div class="np-consult-quote">"Your data is the map. We provide the guide."</div>
-        <br>
         <div class="np-consult-text">
-          This report is your first step, but data alone doesn't change how you feel. A naturopathic consultation takes everything in these pages and translates it into a <strong>personalised treatment plan specific to ${name}, right now.</strong> The centrepiece of that plan is often a bespoke liquid herbal formula: a single daily tonic, dispensed and labelled for you, combining therapeutic-grade herbs in precise ratios that address the exact patterns identified in your blood.<br><br>Before any formula is prescribed, your naturopath conducts a thorough online intake, reviewing your full health history, current medications, allergies, and any contraindications that would influence which herbs are safe and effective for you specifically. This is what separates a therapeutic prescription from anything you could buy off a shelf.
+          This report is your first step. A naturopathic consultation takes everything in these pages and translates it into a <strong>personalised treatment plan specific to ${name}, right now</strong> — informed by your full health history, current medications, and any contraindications. The centrepiece is often a bespoke liquid herbal formula: therapeutic-grade herbs in precise ratios, addressing the exact patterns identified in your blood.
         </div>
       </div>
       <div class="np-process-steps">
