@@ -3924,18 +3924,7 @@ async function exportPDF() {
   btn.textContent = 'Generating…';
   btn.disabled = true;
 
-  // Clone the report so we can apply export overrides without touching the live preview
   const source = document.getElementById('report-output');
-  const clone = source.cloneNode(true);
-  clone.style.cssText = 'position:fixed;top:-99999px;left:-99999px;width:21cm;margin:0;padding:0;background:white;';
-
-  // Remove fixed A4 heights so all content is captured
-  clone.querySelectorAll('.welcome-page,.panel-page,.naturopath-page').forEach(el => {
-    el.style.height = 'auto';
-    el.style.minHeight = '0';
-    el.style.overflow = 'visible';
-  });
-  document.body.appendChild(clone);
 
   const opt = {
     margin: 0,
@@ -3946,24 +3935,27 @@ async function exportPDF() {
       useCORS: true,
       allowTaint: false,
       logging: false,
-      windowWidth: 794
+      onclone: (_doc, el) => {
+        el.querySelectorAll('.welcome-page,.panel-page,.naturopath-page').forEach(p => {
+          p.style.height = 'auto';
+          p.style.minHeight = '0';
+          p.style.overflow = 'visible';
+        });
+      }
     },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
   };
 
   try {
-    const pdf = await html2pdf().set(opt).from(clone).toPdf().get('pdf');
-    document.body.removeChild(clone);
+    const pdf = await html2pdf().set(opt).from(source).toPdf().get('pdf');
     const blob = pdf.output('blob');
     const url  = URL.createObjectURL(blob);
     const tab  = window.open(url, '_blank');
     if (!tab) {
-      // Popup blocked — fall back to download
       const a = document.createElement('a');
       a.href = url; a.download = name + '-adaptiv-report.pdf'; a.click();
     }
   } catch (err) {
-    if (document.body.contains(clone)) document.body.removeChild(clone);
     alert('PDF export failed. Please try again.');
     console.error(err);
   } finally {
