@@ -4123,6 +4123,10 @@ ${rawCSS}
   .report-footer { break-before:page !important; page-break-before:always !important; height:29.7cm !important; display:flex !important; flex-direction:column !important; justify-content:center !important; align-items:center !important; }
   .rb-gauge-wrap, .rb-cols, .rb-header, .rss-item,
   .np-int-card, .np-step, .frp-full-header { break-inside:avoid !important; }
+  /* Keep notes attached to gauge — stop split at the gauge/cols boundary */
+  .result-block { break-inside:avoid !important; }
+  .rb-cols { break-before:avoid !important; page-break-before:avoid !important; }
+  .rb-gauge-val-row { break-after:avoid !important; page-break-after:avoid !important; }
 }
 </style>
 </head>
