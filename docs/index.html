@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
 /* ── BRAND TOKENS ───────────────────────────────── */
 :root {
@@ -1899,7 +1900,7 @@ body{
   <div class="app-actions">
     <button class="btn btn-ghost" onclick="clearAll()">Clear All</button>
     <button class="btn btn-primary" onclick="scrollToPreview()">Preview Report</button>
-    <button class="btn btn-pdf" onclick="exportWebpage()">⬇ Export Report</button>
+    <button class="btn btn-pdf" onclick="downloadPDF()">⬇ Download PDF</button>
   </div>
 </header>
 
@@ -3948,6 +3949,41 @@ function switchTab(tab) {
     bottlePanel.classList.remove('active');
     reportPanel.classList.remove('formula-active');
   }
+}
+
+function downloadPDF() {
+  const firstName = document.getElementById('p-first')?.value || '';
+  const lastName  = document.getElementById('p-last')?.value || '';
+  const fullName  = (firstName + ' ' + lastName).trim() || 'patient';
+
+  // Off-screen container at exact A4 width — inherits all page CSS automatically
+  const container = document.createElement('div');
+  container.className = 'preview-paper';
+  container.style.cssText = 'position:absolute;left:-9999px;top:0;width:21cm;max-width:none;margin:0;box-shadow:none;';
+  container.innerHTML = document.getElementById('report-output').innerHTML;
+  document.body.appendChild(container);
+
+  const btn = document.querySelector('.btn-pdf');
+  if (btn) { btn.textContent = 'Generating…'; btn.disabled = true; }
+
+  const opt = {
+    margin: 0,
+    filename: `Adaptiv-Report-${fullName}.pdf`,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, letterRendering: true, windowWidth: 794 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak: {
+      mode: ['css', 'legacy'],
+      after:  ['.welcome-page', '.panel-page'],
+      before: ['.results-section', '.naturopath-page', '.frp-full-page', '.report-footer'],
+      avoid:  ['.result-block', '.rb-gauge-wrap', '.frp-full-header', '.np-int-card', '.np-step']
+    }
+  };
+
+  html2pdf().set(opt).from(container).save().then(() => {
+    document.body.removeChild(container);
+    if (btn) { btn.textContent = '⬇ Download PDF'; btn.disabled = false; }
+  });
 }
 
 function exportWebpage() {
