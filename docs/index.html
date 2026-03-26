@@ -3956,13 +3956,7 @@ function downloadPDF() {
   const lastName  = document.getElementById('p-last')?.value || '';
   const fullName  = (firstName + ' ' + lastName).trim() || 'patient';
 
-  // Off-screen container at exact A4 width — inherits all page CSS automatically
-  const container = document.createElement('div');
-  container.className = 'preview-paper';
-  container.style.cssText = 'position:absolute;left:-9999px;top:0;width:21cm;max-width:none;margin:0;box-shadow:none;';
-  container.innerHTML = document.getElementById('report-output').innerHTML;
-  document.body.appendChild(container);
-
+  const element = document.getElementById('report-output');
   const btn = document.querySelector('.btn-pdf');
   if (btn) { btn.textContent = 'Generating…'; btn.disabled = true; }
 
@@ -3970,7 +3964,7 @@ function downloadPDF() {
     margin: 0,
     filename: `Adaptiv-Report-${fullName}.pdf`,
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, letterRendering: true, windowWidth: 794 },
+    html2canvas: { scale: 2, useCORS: true, allowTaint: true, letterRendering: true, windowWidth: 794, scrollY: 0 },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
     pagebreak: {
       mode: ['css', 'legacy'],
@@ -3980,8 +3974,7 @@ function downloadPDF() {
     }
   };
 
-  html2pdf().set(opt).from(container).save().then(() => {
-    document.body.removeChild(container);
+  html2pdf().set(opt).from(element).save().then(() => {
     if (btn) { btn.textContent = '⬇ Download PDF'; btn.disabled = false; }
   });
 }
